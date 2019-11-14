@@ -1,0 +1,47 @@
+.wrapper{
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../../../assets/alexa.rifa.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.gif{
+    background-image: url("../../../assets/Alexa.rifa2.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 20;
+}
+
+.text{
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 40%;
+    text-align: center;
+    margin-left:40px;
+}
+
+.text p{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.logos{
+    text-align: center;
+    position: absolute;
+    top: 45%;
+    left: 30%;
+    width: 60%
+}
+
+.logos img.escamilla{
+    width: 20%;
+}
+
+.logos img.copa{
+    width: 50%;
+}

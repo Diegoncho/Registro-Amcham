@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg">
+
+  <!-- Dropdown -->
+  <a *ngIf="es_admin" class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <img src="assets/menu.png" class="menu-icon" />
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+    <!-- ----------------------------------------------- -->
+    <!-- Agregar links al dropdown en pantallas pequeñas -->
+    <div class="">
+      <a class="dropdown-item" routerLink="/AmCham">Registrar</a>
+      <a class="dropdown-item" routerLink="/AmCham/stand">Registrar Stand</a>
+      <a class="dropdown-item" routerLink="/AmChamAdmin/stands">Stands Registrados</a>
+      <a class="dropdown-item" routerLink="/AmChamAdmin">Personas registradas</a>
+      <a class="dropdown-item" routerLink="/AmChamAdmin/asistentes">Asistentes</a>
+      <a class="dropdown-item" routerLink="/AmChamAdmin/eventos">Eventos</a>
+      <a class="dropdown-item" routerLink="/AmCham/encuesta">Encuesta</a>
+      <a class="dropdown-item" routerLink="/AmChamAdmin/resultados">Resultados</a>
+    </div>
+    <!-- ---------------------------------------------- -->
+
+    <!-- Mostrar la opción de mi perfil y de cerrar sesión siempre -->
+    <!-- <a class="dropdown-item" routerLink="/colaboradores/me/detalle">Mi Perfil</a> -->
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+  </div>
+  <!-- /Dropdown -->
+
+  <!-- --------------------------------- -->
+  <!-- Mostrar link en pantallas grandes -->
+  <div class="collapse navbar-collapse">
+    <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li *ngFor="let item of items" class="nav-item">
+        <a routerLink="{{item.ruta}}">{{item.nombre}}</a>
+      </li>
+    </ul> -->
+
+    <!-- Mostrar imagen en pequeño -->
+    <!-- <div class="my-2 my-lg-0">
+      <img class="img-logo" src="assets/logo.png"/>
+    </div> -->
+  </div>
+  <!-- --------------------------------- -->
+
+  <!-- Logo -->
+  <!-- <div class="d-lg-none d-block float-right">
+    <img class="img-logo" src="assets/logo.png"/>
+  </div> -->
+</nav>

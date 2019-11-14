@@ -1,0 +1,135 @@
+<!-- Encabezado -->
+  <div class="row" *ngIf="Data">
+    <div class="input-group mb-3 col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+      <label for="search" class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" style="font-size: 13px"></i>Buscar</span>
+      </label>
+      <input type="text" id="search" [(ngModel)]="busqueda" class="form-control" placeholder="Buscar por nombre, empresa, correo..."
+      style="font-size: 13px">
+    </div>
+  </div>
+
+<!-- Listado de registros. -->
+<div class="row" *ngIf="Data">
+  <div class="col-12">
+    <div class="card">
+
+      <div class="d-flex justify-content-between">
+        <div class="form-group d-flex align-items-center col-7">
+          <div class="number-select">
+            <select class="form-control" (change)='pageLenght($event)'>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option selected="true">10</option>
+            </select>
+          </div>
+          <p class="m-0 ml-3">Registros por página.</p>
+        </div>
+
+        <div class="col-lg-3 offset-lg-2 col-md-2 offset-md-1">
+          <div class="btns" *ngIf="Data">
+            <div class="d-flex justify-content-end" style="width: 50%">
+              <button class="btn btn-excel" data-toggle="modal" data-target="#modal_editar" (click)="selectRegistro(null)">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla -->
+          <table class="table table-striped table-collapse">
+            <thead>
+              <tr>
+                <th class="d-sm-table-cell" style="width: 10%">#</th>
+                <th (click)="ordenar('nombre')" style="width: 40%">Nombre</th>
+                <th (click)="ordenar('empresa')" style="width: 40%">Empresa</th>
+                <th (click)="ordenar('fecha_comio')" class="d-sm-table-cell" style="width: 30%">Comida</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <p class="text-center" *ngIf="Data.length === 0">No hay registros que mostrar</p>
+
+              <!-- Mostrar solicitud -->
+              <tr *ngFor="let registro of (DataVisible | filtroStaff: busqueda:orden:asc
+              | paginate: { itemsPerPage: PageItems, currentPage: p }); let i = index">
+                <td style="width: 20px">{{i + 1}}</td>
+                <td style="width: 250px">{{registro.nombre}}</td>
+                <td style="width: 200px">{{registro.empresa}}</td>
+                <td style="width: 120px">{{registro.fecha_comio | date:'HH:mm'}}</td>
+                <td>
+                  <i class="fa fa-coffee" (click)="comio(registro)"></i>
+                  <i class="fa fa-print" data-toggle="modal" data-target="#modal_badge" (click)="selectRegistro(registro)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between align-items-center">
+            <p style="font-size: 13px">Total registros: {{Data.length}} / Mostrados 1 de {{PageItems}}</p>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+
+      <!-- Fin de la tabla. -->
+    </div>
+  </div>
+
+
+<app-modal [id]="'modal_editar'" [es_exito]="true" [mensaje_boton]=" registro ? 'Actualizar' : 'Crear'" (btnClick)="actualizar()">
+  <div class="text-container" *ngIf="registro || creando">
+      <form [formGroup]="solicitudForm">
+        <!-- Nombre -->
+        <div class="form-group">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" class="form-control" formControlName="nombre" />
+          <div class="div-error" *ngIf="f_nombre.invalid && (f_nombre.dirty || f_nombre.touched || show_error_message)">
+            Ingrese el nombre
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="empresa">Empresa</label>
+          <input type="text" class="form-control" formControlName="empresa" />
+          <div class="div-error" *ngIf="f_empresa.invalid && (f_empresa.dirty || f_empresa.touched || show_error_message)">
+            Ingrese el nombre de la empresa
+          </div>
+        </div>
+
+        <!-- Botones del formulario -->
+        <div class="button-container text-center">
+          <p *ngIf="show_error_message && solicitudForm.invalid" class="p-message message-error">{{form_message}}</p>
+          <p *ngIf="show_form_message" class="p-message">{{form_message}}</p>
+        </div>
+      </form>
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_badge'" [es_exito]="true" [mensaje_boton]="'Imprimir'" (btnClick)="imprimir()">
+  <div class="text-container text-center" *ngIf="registro">
+    ¿Imprimir el badge de <br> <span class="bold">{{registro.nombre}}</span>?
+
+    <div id="print-section">
+      <img style="width: 100px" src="{{registro.badge}}" alt="">
+    </div>
+    <br>
+    {{form_message}}
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_comio'" [es_informativo]="true">
+  <div class="text-container text-center">
+    ¡Esta persona ya ha sido registrada!
+  </div>
+</app-modal>
+
+
+
+

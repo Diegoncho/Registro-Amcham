@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+    <img src="assets/business-logo.png?v=2.0" class="header" alt="">
+
+    <form [formGroup]="solicitudForm">
+      <div class="card card-edicion">
+        <br>
+          <!-- Nombre -->
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" class="form-control" formControlName="nombre" />
+            <div class="div-error" *ngIf="f_nombre.invalid && (f_nombre.dirty || f_nombre.touched || show_error_message)">
+              Ingrese su nombre
+            </div>
+          </div>
+
+          <!-- Empresa -->
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input type="text" class="form-control" formControlName="empresa" />
+            <div class="div-error" *ngIf="f_empresa.invalid && (f_empresa.dirty || f_empresa.touched || show_error_message)">
+              Ingrese el nombre de la empresa en la que trabaja
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="esMiembro">¿Es miembro de AmCham?</label>
+            <div class="div-radio">
+              <label class="radio"><input type="radio" formControlName="es_miembro" value="true"> Sí</label>
+              <label class="radio"><input type="radio" formControlName="es_miembro" value="false"> No</label>
+            </div>
+            <div class="div-error" *ngIf="f_es_miembro.invalid && (f_es_miembro.dirty || f_es_miembro.touched || show_error_message)">
+              Seleccione una respuesta
+            </div>
+            <!-- <div *ngIf="f_es_miembro.value === 'false'">
+              Se le solicita pasar a nuestras oficinas ubicadas en: <span class="italic">World Trade Center, Torre II, nivel 3, local 308 89 Av. Norte Col. Escalón, San Salvador</span> antes del <span class="bold">20 de mayo de 2019</span>.
+              <br><br>Para más información contacte a abonilla@amchamsal.com o llame al 2263-9494.
+            </div> -->
+          </div>
+
+          <!-- Cargo -->
+          <div class="form-group">
+            <label for="cargo">Cargo</label>
+            <input type="text" class="form-control" formControlName="cargo" />
+            <div class="div-error" *ngIf="f_cargo.invalid && (f_cargo.dirty || f_cargo.touched || show_error_message)">
+              Ingrese su cargo dentro de la empresa
+            </div>
+          </div>
+
+          <!-- Correo -->
+          <div class="form-group">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" class="form-control" formControlName="correo" />
+            <div class="div-error" *ngIf="f_correo.invalid && (f_correo.dirty || f_correo.touched || show_error_message)">
+              Ingrese su correo electrónico (en un formato válido)
+            </div>
+          </div>
+
+          <!-- Teléfono fijo -->
+          <div class="form-group">
+            <label for="tel">Teléfono empresarial</label>
+            <input type="text" class="form-control" formControlName="telefono_fijo" />
+            <div class="div-error" *ngIf="f_telefono_fijo.invalid && (f_telefono_fijo.dirty || f_telefono_fijo.touched || show_error_message)">
+              Ingrese el número de contacto de su empresa, en formato 2222-2222
+            </div>
+          </div>
+
+          <!-- Teléfono móvil -->
+          <div class="form-group">
+            <label for="tel">Teléfono celular</label>
+            <input type="text" class="form-control" formControlName="telefono_movil" />
+            <div class="div-error" *ngIf="f_telefono_movil.invalid && (f_telefono_movil.dirty || f_telefono_movil.touched || show_error_message)">
+              Ingrese su teléfono personal, en formato 7777-7777
+            </div>
+          </div>
+      </div>
+
+
+      <!-- Botones del formulario -->
+      <div class="button-container text-center">
+        <p *ngIf="show_error_message && solicitudForm.invalid" class="p-message message-error">{{form_message}}</p>
+        <p *ngIf="show_form_message" class="p-message">{{form_message}}</p>
+        <button class="submit" type="button" (click)="crear()" [disabled]="actualizando">Registrarse</button>
+      </div>
+    </form>
+
+    <div class="img-wrapper">
+      <img src="assets/footer.png" class="footer" alt="">
+      <img src="assets/footer 2.png" class="footer-2" alt="">
+    </div>
+  </div>
+</div>

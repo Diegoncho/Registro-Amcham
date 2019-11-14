@@ -1,0 +1,31 @@
+<div class="container-fluid">
+
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+        <img src="assets/amcham.png?v=2.0" class="header" alt="">
+      </div>
+    </div>
+
+  <div class="row">
+
+    <!-- Formulario -->
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12 login">
+
+      <!-- Campos del formulario -->
+      <div class="row">
+        <div class="col-12">
+          <form [formGroup]="loginForm" novalidate>
+            <div class="form-group">
+              <input type="email" #inputEmail formControlName="email" placeholder="Correo" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type="password" #inputPassword class="form-control" formControlName="password" placeholder="Contraseña" required>
+              <label class="text-error">{{errorMessage}}</label>
+            </div>
+            <button type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-lg btn-block">Ingresar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

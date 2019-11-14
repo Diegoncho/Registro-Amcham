@@ -1,0 +1,168 @@
+.card-edicion{
+    margin-top: -60px;
+    padding: 40px;
+    border-bottom: 10px solid #1c2349;
+}
+
+nav[_ngcontent-c2] {
+  background: #fff !important;
+}
+
+.titulo{
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    color: #1c2349;
+    margin-bottom: 0px;
+}
+
+.img-logo{
+    max-height: 100px;
+}
+
+.img-fluid{
+    border-radius: 10px;
+    height: 200px;
+    width: 40%;
+    /*width: 75%;*/
+}
+
+label.radio{
+    display: inline;
+    margin-right: 30px;
+    color: #1c2349;
+}
+
+label:not(.radio){
+    font-weight: bold;
+    color: #1c2349;
+}
+
+.subtitulo, .div-error, .div-success{
+    text-align: left;
+}
+a{
+    text-align: left;
+}
+.div-error{
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+.div-success{
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #35dc3d;
+}
+
+.ng-invalid:not(form).ng-touched, .ng-invalid:not(form).ng-dirty  {
+    border: 2px solid #a94442;
+}
+
+.margin{
+    margin: auto;
+}
+
+a.link-foto{
+    font-size: 16px;
+    color: #1BC1DD;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a.link-foto:hover, a.link-foto:active{
+    color: rgb(27, 134, 221);
+    text-decoration: underline;
+}
+
+#fileInput{
+    display: none;
+}
+
+.p-message{
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    margin: 0px;
+}
+/* Botón para actualizar */
+button.submit{
+    background-color: #1c2349;
+    color: white;
+    font-size: 15px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 10px 75px;
+    margin: 40px 0px;
+    cursor: pointer;
+}
+
+.headType{
+    margin-bottom: 20%
+}
+
+/* Estilos range */
+.custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+}
+.custom-day.focused {
+    background-color: #e6e6e6;
+}
+.custom-day.range, .custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+}
+.custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+}
+
+.header{
+    position: relative;
+    z-index: 9;
+    box-shadow: 2px 4px 6px 0px rgba(0,0,0,0.12);
+    width: 100%;
+    margin-top: -47px;
+    margin-bottom: 20px;
+    border-radius: 0px 0px 10% 10%;
+}
+
+.img-wrapper{
+    text-align: center;
+}
+
+.footer{
+    width: 100%;
+}
+
+.footer-2{
+    width: 25%;
+    margin-top: 30px;
+}
+
+.italic{
+    font-style: italic
+}
+
+.bold{
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .footer-2{
+        width: 50%;
+    }
+
+    .header{
+        margin-top: 0px;
+    }
+
+    .titulo{
+        margin-bottom: 0px;
+    }
+}

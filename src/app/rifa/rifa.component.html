@@ -1,0 +1,16 @@
+<ng-container *ngIf="mostrar_sorteo" [ngSwitch]="sorteo">
+    <app-sorteo *ngSwitchCase="'v'" [participantes]="participantes"></app-sorteo>
+    <app-sorteo-i-strategies *ngSwitchCase="'i'" [participantes]="participantes"></app-sorteo-i-strategies>
+    <app-sorteo-data-red *ngSwitchCase="'d'" [participantes]="participantes"></app-sorteo-data-red>
+</ng-container>
+
+<ng-container *ngIf="mostrar_fase" [ngSwitch]="mensaje">
+    <app-eliminado *ngSwitchCase="'e'" (continue)="continuar()" [nombre]="participante_seleccionado" [mensaje_eliminacion]="mensaje_eliminacion" [mensaje_eliminado]="'¡Gracias por participar ' + participante_seleccionado + '!'"></app-eliminado>
+    <app-ganador *ngSwitchCase="'a'" (continue)="continuar()" [mensaje_inicial]="'¡Ganador!'" [mensaje_ganador]="'¡Felicidades ' + participante_seleccionado + '!'"></app-ganador>
+    <app-ganador-i-strategies *ngSwitchCase="'i'" (continue)="continuar()" [mensaje_inicial]="'¡Ganador!'" [mensaje_ganador]="'¡Felicidades ' + participante_seleccionado + '!'"></app-ganador-i-strategies>
+    <app-ganador-data-red *ngSwitchCase="'d'" (continue)="continuar()" [mensaje_inicial]="'¡Ganador!'" [mensaje_ganador]="'¡Felicidades ' + participante_seleccionado + '!'"></app-ganador-data-red>
+</ng-container>
+
+<ng-container *ngIf="mostrar_final">
+  <app-final-amcham></app-final-amcham>
+</ng-container>

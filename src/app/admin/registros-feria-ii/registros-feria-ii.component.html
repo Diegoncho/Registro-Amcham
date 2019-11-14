@@ -1,0 +1,217 @@
+<!-- Encabezado -->
+  <div class="row" *ngIf="Data">
+    <div class="input-group mb-3 col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+      <label for="search" class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" style="font-size: 13px"></i>Buscar</span>
+      </label>
+      <input type="text" id="search" [(ngModel)]="busqueda" class="form-control" placeholder="Buscar por nombre, empresa, correo, cargo..."
+      style="font-size: 13px">
+    </div>
+  </div>
+
+<!-- Listado de registros. -->
+<div class="row" *ngIf="Data">
+  <div class="col-12">
+    <div class="card">
+
+      <div class="d-flex justify-content-between">
+        <div class="form-group d-flex align-items-center col-7">
+          <div class="number-select">
+            <select class="form-control" (change)='pageLenght($event)'>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option selected="true">10</option>
+            </select>
+          </div>
+          <p class="m-0 ml-3">Registros por página.</p>
+        </div>
+
+        <div class="col-lg-3 offset-lg-2 col-md-2 offset-md-1">
+          <div class="btns" *ngIf="Data">
+            <div class="d-flex justify-content-end"style="width: 50%">
+              <button class="btn btn-excel" (click)="exportarExcel()"><i class="fa fa-file-excel-o"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla -->
+          <table class="table table-striped table-collapse">
+            <thead>
+              <tr>
+                <th class="d-sm-table-cell" style="width: 10%">#</th>
+                <th (click)="ordenar('fecha')" style="width: 25%">Fecha</th>
+                <th (click)="ordenar('empresa')" style="width: 25%">Empresa</th>
+                <th (click)="ordenar('nombre')" style="width: 22%">Nombre</th>
+                <th class="-sm-table-cell" (click)="ordenar('cargo')" style="width: 16%">Cargo</th>
+                <th class="d-sm-table-cell" (click)="ordenar('es_miembro')">¿Miembro?</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <p class="text-center" *ngIf="Data.length === 0">No hay registros que mostrar</p>
+
+              <!-- Mostrar solicitud -->
+              <tr *ngFor="let registro of (DataVisible | filtroRegistros:busqueda:orden:asc
+              | paginate: { itemsPerPage: PageItems, currentPage: p }); let i = index">
+                <td class="d-sm-table-cell" style="width: 20px">{{i + 1}}</td>
+                <td style="width: 150px">{{registro.fecha | date:'dd/MM HH:mm'}}</td>
+                <td style="width: 200px">{{registro.empresa}}</td>
+                <td style="width: 300px">{{registro.nombre}} {{registro.editado ? '*' : ''}}</td>
+                <td class="d-sm-table-cell" style="width: 100px">{{registro.cargo}}</td>
+                <td class="d-sm-table-cell" style="text-align: center">{{registro.es_miembro ? 'Sí' : 'No'}}</td>
+                <td>
+                  <i class="fa fa-check" data-toggle="modal" data-target="#modal_disabled"></i>
+                  <i class="fa fa-info-circle" data-toggle="modal" data-target="#modal_disabled"></i>
+                  <i class="fa fa-edit" data-toggle="modal" data-target="#modal_disabled"></i>
+                  <i class="fa fa-envelope" data-toggle="dropdown"></i>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" data-toggle="modal" data-target="#modal_disabled">Enviar información registro</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#modal_disabled">Enviar información de viaje</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#modal_disabled">Enviar código QR</a>
+                  </div>
+                  <i class="fa fa-trash" data-toggle="modal" data-target="#modal_disabled"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between align-items-center">
+            <p style="font-size: 13px">Total registros: {{Data.length}} / Mostrados 1 de {{PageItems}}</p>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+
+      <!-- Fin de la tabla. -->
+    </div>
+  </div>
+
+<app-modal [id]="'modal_info'" [es_informativo]="true">
+  <div class="text-container" *ngIf="registro">
+    <p><span class="bold">Nombre: </span> {{registro.nombre}}</p>
+    <p><span class="bold">Correo: </span> {{registro.correo}}</p>
+    <p><span class="bold">Teléfono: </span> {{registro.telefono}}</p>
+    <p><span class="bold">Empresa: </span> {{registro.empresa}}</p>
+    <p><span class="bold">Cargo: </span> {{registro.cargo}}</p>
+    <p><span class="bold">¿Es miembro?: </span> {{registro.es_miembro ? 'Sí' : 'No'}}</p>
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_editar'" [es_exito]="true" [mensaje_boton]="'Actualizar'" (btnClick)="actualizar()">
+  <div class="text-container" *ngIf="registro">
+      <form [formGroup]="solicitudForm">
+
+        <div class="form-group">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" class="form-control" formControlName="nombre" />
+          <div class="div-error" *ngIf="f_nombre.invalid && (f_nombre.dirty || f_nombre.touched || show_error_message)">
+            Ingrese su nombre
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="empresa">Empresa</label>
+          <input type="text" class="form-control" formControlName="empresa" />
+          <div class="div-error" *ngIf="f_empresa.invalid && (f_empresa.dirty || f_empresa.touched || show_error_message)">
+            Ingrese el nombre de la empresa en la que trabaja
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="esMiembro">¿Es miembro de AmCham?</label>
+          <div class="div-radio">
+            <label class="radio"><input type="radio" formControlName="es_miembro" value="true"> Sí</label>
+            <label class="radio"><input type="radio" formControlName="es_miembro" value="false"> No</label>
+          </div>
+          <div class="div-error" *ngIf="f_es_miembro.invalid && (f_es_miembro.dirty || f_es_miembro.touched || show_error_message)">
+            Seleccione una respuesta
+          </div>
+        </div>
+
+        <!-- Cargo -->
+        <div class="form-group">
+          <label for="cargo">Cargo</label>
+          <input type="text" class="form-control" formControlName="cargo" />
+          <div class="div-error" *ngIf="f_cargo.invalid && (f_cargo.dirty || f_cargo.touched || show_error_message)">
+            Ingrese su cargo dentro de la empresa
+          </div>
+        </div>
+
+        <!-- Correo -->
+        <div class="form-group">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" class="form-control" formControlName="correo" />
+          <div class="div-error" *ngIf="f_correo.invalid && (f_correo.dirty || f_correo.touched || show_error_message)">
+            Ingrese su correo electrónico (en un formato válido)
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tel">Teléfono</label>
+          <input type="text" class="form-control" formControlName="telefono" />
+          <div class="div-error" *ngIf="f_telefono.invalid && (f_telefono.dirty || f_telefono.touched || show_error_message)">
+            Ingrese el número de contacto
+          </div>
+        </div>
+
+
+        <!-- Botones del formulario -->
+        <div class="button-container text-center">
+          <p *ngIf="show_error_message && solicitudForm.invalid" class="p-message message-error">{{form_message}}</p>
+          <p *ngIf="show_form_message" class="p-message">{{form_message}}</p>
+        </div>
+      </form>
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_registro'" [es_exito]="true" [mensaje_boton]="'Reenviar'" (btnClick)="enviarRegistro()">
+  <div class="text-container text-center" *ngIf="registro">
+    ¿Reenviar el correo de registro a <br> <span class="bold">{{registro.correo}}</span>?
+    <br>
+    {{form_message}}
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_viaje'" [es_exito]="true" [mensaje_boton]="'Enviar'" (btnClick)="enviarInfo()">
+  <div class="text-container text-center" *ngIf="registro">
+    ¿Enviar correo con información del viaje a<br> <span class="bold">{{registro.correo}}</span>?
+    <br>
+    {{form_message}}
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_qr'" [es_exito]="true" [mensaje_boton]="'Enviar'" (btnClick)="enviarQR()">
+  <div class="text-container text-center" *ngIf="registro">
+    ¿Enviar correo con código QR a<br> <span class="bold">{{registro.correo}}</span>?
+    <br>
+    {{form_message}}
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_delete'" [es_advertencia]="true" [mensaje_boton]="'Eliminar'" (btnClick)="eliminar()">
+  <div class="text-container text-center" *ngIf="registro">
+    ¿Está seguro de eliminar el registro<br> <span class="bold">{{registro.correo}}</span>?
+  <br>
+  {{form_message}}
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_arribo'" [es_informativo]="true">
+  <div class="text-container text-center">
+    ¡Esta persona ya ha arribado!
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_disabled'" [es_informativo]="true">
+  <div class="text-container text-center d-flex flex-column align-items-center">
+    <p class="warning"><i class="fa fa-ban" style="margin:0 5px;"></i>Warning!</p>
+    <p class="ban-warning">¡Las acciones de este componente estan deshabilitadas!.</p>
+  </div>
+</app-modal>
+

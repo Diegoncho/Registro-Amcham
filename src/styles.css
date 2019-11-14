@@ -1,0 +1,112 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+    background-color: #E5E5E5;
+    /* height: 100vh; */
+}
+
+@media (max-width: 768px){
+    .slider-tick-label{
+      font-size: 11px !important;
+    }
+  }
+
+.modal-dialog {
+    max-height: 70%;
+    overflow-y: auto !important;
+}
+
+.slider.slider-horizontal {
+    width: 95% !important;
+    height: 20px;
+    margin-bottom: 28px !important;
+  }
+
+div.row{
+    margin: 0px;
+}
+
+.table td, .table th {
+  padding: 3px !important;
+}
+
+/* Imagenes redondas */
+img.img-round{
+    border-radius: 50% !important;
+    width: 64px;
+    height: 64px;
+}
+
+img.img-round-big{
+    border-radius: 50% !important;
+    width: 96px;
+    height: 96px;
+}
+
+.ngx-pagination {
+  padding: 0 !important;
+}
+
+img.img-round-small{
+    border-radius: 50% !important;
+    width: 50px;
+    height: 50px;
+}
+
+img.img-round-xsmall{
+    border-radius: 50% !important;
+    width: 40px;
+    height: 40px;
+}
+
+
+img.img-round-auto{
+    border-radius: 50% !important;
+}
+
+/* Diseño del dropdown de autocompletar */
+ngb-typeahead-window.dropdown-menu{
+    background-color: white;
+}
+
+ngb-typeahead-window .dropdown-item{
+    cursor: pointer;
+}
+
+ngb-typeahead-window .dropdown-item.active{
+    background-color: #F1F1F1;
+    color: black;
+}
+
+/* Tamaño del autocompletar */
+.auto-logro ngb-typeahead-window.dropdown-menu{
+    width: calc(100% - 78px);
+}
+
+.auto-usuario ngb-typeahead-window.dropdown-menu{
+    width: calc(100% - 30px);
+}
+
+/* Dropdown de opciones */
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-toggle{
+    border-style: none;
+    padding: 0px;
+    background-color: transparent;
+}
+
+.dropdown-toggle:active, .dropdown-toggle:hover{
+    background-color: transparent;
+}
+
+.dropdown-toggle:focus{
+    box-shadow: none;
+}
+
+/* Formularios */
+input:focus, button:focus{
+    outline: none;
+}

@@ -1,0 +1,42 @@
+<!-- Mostrar barra de progreso mientras se obtienen los datos. -->
+<app-progress-bar *ngIf="!registros"></app-progress-bar>
+
+<div class="row">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+    <img src="assets/head.png?v=2.0" class="header" alt="">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 text-center title">
+    Stands
+  </div>
+</div>
+
+<div class="col-lg-4 offset-lg-4 col-md-10 offset-md-1 col-12 mt-3 mb-3">
+  <div class="form-group">
+    <select class="form-control" (change)='evento($event)'>
+      <option value="Business Networking">Business Networking</option>
+      <option value="II Feria de Tecnologia">II Feria de Tecnología</option>
+    </select>
+  </div>
+</div>
+
+<ng-container [ngSwitch]="table">
+  <div *ngSwitchCase="'Business Networking'">
+    <app-stands-business [Data]="registros_business" [DataVisible]="registros_business_visibles"></app-stands-business>
+  </div>
+
+  <div *ngSwitchCase="'II Feria de Tecnologia'">
+    <app-stands-feria-ii [Data]="registros" [DataVisible]="registros_visibles"></app-stands-feria-ii>
+  </div>
+</ng-container>
+
+<div class="row row-redes">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+      <div class="img-wrapper">
+        <img src="assets/footer.png" class="footer" alt="">
+        <img src="assets/footer 2.png" class="footer-2" alt="">
+      </div>
+  </div>
+</div>

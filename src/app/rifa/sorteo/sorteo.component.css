@@ -1,0 +1,30 @@
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
+
+.sorteo-container{
+    width: 50%;
+    margin-left: 25%;
+    height: 100vh;
+    background-image: url("../../../assets/inicio.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 15%;
+}
+
+.sorteo-content{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.sorteo-content span{
+    position: absolute;
+    width: 110px;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+}

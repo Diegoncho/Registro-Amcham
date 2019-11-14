@@ -1,0 +1,210 @@
+<div class="row">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+    <img src="assets/header 1.png?v=1.0" class="header" alt="">
+  </div>
+
+  <div class="col-lg-12 offset-lg-0 col-md-12 offset-md-0 col-12">
+  <!-- Inicio del FormGroup -->
+    <form [formGroup]="encuestaGroup" class="form-encuesta d-flex flex-wrap">
+      <div class="card card-edicion-1">
+        <div class="encuesta-head">
+          <img src="assets/encuesta-head.png?v=1.0" class="encabezado-encuesta" alt="">
+        </div>
+        <!-- Titulo -->
+          <p class="titulo">Encuesta</p>
+
+        <!-------------------------------------------->
+        <!--- Radio Button de encuesta. -->
+
+        <!-- Pregunta 1 -->
+          <div class="form-group">
+            <label for="pregunta_1">1. ¿En general qué tan satisfecho se encuentra con el evento de Networking de AmCham?</label>
+            <div class="div-radio d-flex flex-column">
+              <label class="radio"><input type="radio" formControlName="pregunta_1" value="5"> Muy Satisfecho</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_1" value="4"> Satisfecho</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_1" value="3"> Ni Satisfecho, Ni Insatisfecho</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_1" value="2"> Insatisfecho</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_1" value="1"> Muy Insatisfecho</label>
+            </div>
+            <div class="div-error" *ngIf="form_p1.invalid && (form_p1.dirty || form_p1.touched || show_error_message)">
+                Seleccione una respuesta
+            </div>
+          </div>
+
+        <!-- Pregunta 2 -->
+          <div class="form-group">
+            <label for="pregunta_2">2. ¿En general cómo evalúa la logística del evento?</label>
+            <div class="div-radio d-flex flex-column">
+              <label class="radio"><input type="radio" formControlName="pregunta_2" value="5"> Muy Buena</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_2" value="4"> Buena</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_2" value="3"> Regular</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_2" value="2"> Mala</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_2" value="1"> Muy Mala</label>
+            </div>
+            <div class="div-error" *ngIf="form_p2.invalid && (form_p2.dirty || form_p2.touched || show_error_message)">
+                Seleccione una respuesta
+            </div>
+          </div>
+
+
+        <!-- Pregunta 3 -->
+          <div class="form-group">
+            <label for="pregunta_3">3. ¿Cómo considera la comunicación entre los organizadores del evento
+            de Networking de AmCham y su empresa previa al día del evento?</label>
+            <div class="div-radio d-flex flex-column">
+              <label class="radio"><input type="radio" formControlName="pregunta_3" value="5"> Muy Buena</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_3" value="4"> Buena</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_3" value="3"> Indiferente</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_3" value="2"> Mala</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_3" value="1"> Muy Mala</label>
+            </div>
+            <div class="div-error" *ngIf="form_p3.invalid && (form_p3.dirty || form_p3.touched || show_error_message)">
+                Seleccione una respuesta
+            </div>
+          </div>
+
+        <!-- Pregunta 4 -->
+          <div class="form-group">
+            <label for="pregunta_4">4. ¿Los organizadores le brindaron toda la información necesaria
+            para su participación en el evento de Networking de AmCham?</label>
+            <div class="div-radio d-flex flex-column">
+              <label class="radio"><input type="radio" formControlName="pregunta_4" value="1"> Sí</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_4" value="0"> No</label>
+              <div *ngIf="form_p4.value === '0'">
+                <label for="pregunta_4">¿Por qué?</label>
+                <input type="text" formControlName="pregunta_4_no" class="form-control"/>
+              </div>
+            </div>
+            <div class="div-error" *ngIf="form_p4.invalid && (form_p4.dirty || form_p4.touched || show_error_message)">
+                Seleccione una respuesta
+            </div>
+          </div>
+
+        <!-- Pregunta 5 -->
+          <div class="form-group">
+            <label for="pregunta_5">5. ¿Qué tan útil fue para su empresa su participación en el evento de Networking de AmCham?</label>
+            <div class="div-radio d-flex flex-column">
+              <label class="radio"><input type="radio" formControlName="pregunta_5" value="3"> Mucho</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_5" value="2"> Poco</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_5" value="1"> Nada</label>
+            </div>
+            <div class="div-error" *ngIf="form_p5.invalid && (form_p5.dirty || form_p5.touched || show_error_message)">
+                Seleccione una respuesta
+            </div>
+          </div>
+      </div>
+
+      <div class="card card-edicion-2">
+        <div class="encuesta-head">
+          <img src="assets/encuesta-head.png?v=1.0" class="encabezado-encuesta" alt="">
+        </div>
+
+        <!-------------------------------------------->
+        <!--- Radio Button de encuesta. -->
+
+        <!-- Pregunta 6 -->
+          <div class="form-group">
+            <label for="pregunta_6">6. ¿Cómo considera el precio por participar en el evento de Networking de AmCham?</label>
+            <div class="div-radio d-flex flex-column">
+              <label class="radio"><input type="radio" formControlName="pregunta_6" value="5"> Muy Caro</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_6" value="4"> Caro</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_6" value="3"> Ni Caro, Ni Barato</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_6" value="2"> Barato</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_6" value="1"> Muy Barato</label>
+            </div>
+            <div class="div-error" *ngIf="form_p6.invalid && (form_p6.dirty || form_p6.touched || show_error_message)">
+                Seleccione una respuesta
+            </div>
+          </div>
+
+        <!-- Pregunta 7 -->
+          <div class="form-group">
+            <label for="pregunta_7">7. ¿Qué tan valioso fue para su empresa el perfil de participantes en el evento de Networking de AmCham?</label>
+            <div class="div-radio d-flex flex-column">
+              <label class="radio"><input type="radio" formControlName="pregunta_7" value="5"> Muy Valioso</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_7" value="4"> Valioso</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_7" value="3"> Indiferente</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_7" value="2"> Poco Valioso</label>
+              <label class="radio"><input type="radio" formControlName="pregunta_7" value="1"> Nada Valioso</label>
+            </div>
+            <div class="div-error" *ngIf="form_p7.invalid && (form_p7.dirty || form_p7.touched || show_error_message)">
+                Seleccione una respuesta
+            </div>
+          </div>
+
+        <!-- Pregunta 8 -->
+          <div class="form-group">
+            <label for="pregunta_8">8. En una escala del 0 al 10, donde 0 es “Definitivamente No” y 10 “Definitivamente Si”
+            ¿Qué tan probable es que usted recomiende a otras empresas participar en el evento de Networking de AmCham?</label>
+            <div class="div-radio">
+              <mv-slider
+                [ticks]='[0,1,2,3,4,5,6,7,8,9,10]'
+                [ticksLabels]='["0","1","2","3","4","5","6","7","8","9","10"]'
+                [min]='0'
+                [max]='10'
+                [step]='1'
+                [value]='0'
+                (change)='value($event)'
+              >
+              </mv-slider>
+              <div class="div-error" *ngIf="form_p8.invalid && (form_p8.dirty || form_p8.touched || show_error_message)">
+                  Seleccione una respuesta
+              </div>
+            </div>
+          </div>
+
+        <!-- Pregunta 9 -->
+          <div class="form-group">
+            <label for="pregunta_9">9. ¿Cómo percibió la dinámica del acercamiento de su empresa con las demás empresas participantes?</label>
+            <input type="text" formControlName="pregunta_9" class="form-control"/>
+            <div class="div-error" *ngIf="form_p9.invalid && (form_p9.dirty || form_p9.touched || show_error_message)">
+                Seleccione una respuesta
+            </div>
+          </div>
+
+        <!-- Pregunta 10 -->
+          <div class="form-group">
+            <label for="pregunta_10">10. ¿Considera participar el próximo año en este mismo evento?</label>
+            <div class="div-radio d-flex flex-column">
+              <label class="radio"><input type="radio" formControlName="pregunta_10" value="1"> Sí</label>
+              <div *ngIf="form_p10.value === '1'" style="margin-bottom: 10px">
+                <label for="pregunta_10">¿Por qué?</label>
+                <input type="text" formControlName="pregunta_10_si" class="form-control"/>
+              </div>
+              <label class="radio"><input type="radio" formControlName="pregunta_10" value="0"> No</label>
+              <div *ngIf="form_p10.value === '0'">
+                <label for="pregunta_10">¿Por qué?</label>
+                <input type="text" formControlName="pregunta_10_no" class="form-control"/>
+              </div>
+            </div>
+            <div class="div-error" *ngIf="form_p10.invalid && (form_p10.dirty || form_p10.touched || show_error_message)">
+                Seleccione una respuesta
+            </div>
+          </div>
+
+        <!-- Pregunta 11 -->
+          <div class="form-group">
+            <label for="pregunta_11">11. ¿Qué sugerencias tiene para este tipo de eventos realizados por AMCHAM?</label>
+            <input type="text" formControlName="pregunta_11" class="form-control"/>
+            <div class="div-error" *ngIf="form_p11.invalid && (form_p11.dirty || form_p11.touched || show_error_message)">
+                Seleccione una respuesta
+            </div>
+          </div>
+      </div>
+
+      <!-- Botones del formulario -->
+      <div class="button-container mt-4 text-center col-12 d-flex flex-column justify-content-center align-items-center">
+        <p *ngIf="show_error_message && encuestaGroup.invalid" class="p-message message-error">{{form_message}}</p>
+        <p *ngIf="show_form_message" class="p-message">{{form_message}}</p>
+        <button class="submit" type="button" (click)="crear()" style="width:250px">Enviar</button>
+      </div>
+    </form>
+
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+      <div class="img-wrapper">
+        <img src="assets/footer.png" class="footer" alt="">
+        <img src="assets/footer 2.png" class="footer-2" alt="">
+      </div>
+    </div>
+  </div>
+</div>

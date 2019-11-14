@@ -1,0 +1,212 @@
+<!-- Mostrar barra de progreso mientras se obtienen los datos. -->
+<app-progress-bar *ngIf="!resultados"></app-progress-bar>
+
+<div class="row">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+    <img src="assets/head.png?v=2.0" class="header" alt="">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 text-center title">
+    Resultados
+  </div>
+</div>
+
+<div class="col-lg-4 offset-lg-4 col-md-10 offset-md-1 col-12 mt-3 mb-3">
+  <div class="form-group">
+    <select class="form-control" (change)='evento($event)'>
+      <option value="Business Networking">Business Networking</option>
+      <option value="II Feria de Tecnologia">II Feria de Tecnología</option>
+    </select>
+  </div>
+</div>
+
+<ng-container [ngSwitch]="table">
+  <div *ngSwitchCase="'Business Networking'">
+    <!-- Encabezado -->
+      <div class="row" *ngIf="resultados_business">
+        <div class="col-lg-10 offset-lg-1 col-md-12 offset-md-0">
+          <div class="card">
+
+            <div class="row">
+              <div class="excel-container col-lg-12 offset-lg-0 col-md-12 col-12">
+                <button class="btn btn-excel d-flex align-items-center" (click)="exportarBusinessExcel()">
+                  <i class="fa fa-file-excel-o"></i>
+                  <p class="m-0">Descargar {{encuestas_business.length}} resultados</p>
+                </button>
+              </div>
+            </div>
+
+            <div class="resultado-title d-flex justify-content-center">
+              <p class="p-title">Contenido de Gráficas</p>
+            </div>
+
+            <div class="container-chart">
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #1.</b> ¿En general qué tan satisfecho se encuentra con el evento de Networking de AmCham?</p>
+                <app-pregunta-business [Data]='resultados_business.pregunta_1' [Labels]='Labels_1' [barChartOptions]="barChartOptions"></app-pregunta-business>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #2.</b> ¿En general cómo evalúa la logística del evento?</p>
+                <app-pregunta-business [Data]='resultados_business.pregunta_2' [Labels]='Labels_2' [barChartOptions]="barChartOptions"></app-pregunta-business>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #3.</b> ¿Cómo considera la comunicación entre los organizadores del evento
+                de Networking de AmCham y su empresa previa al día del evento?</p>
+                <app-pregunta-business [Data]='resultados_business.pregunta_3' [Labels]='Labels_3' [barChartOptions]="barChartOptions"></app-pregunta-business>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #4.</b> ¿Los organizadores le brindaron toda la información necesaria para su participación en el
+                evento de Networking de AmCham?</p>
+                <app-pregunta-business [Data]='resultados_business.pregunta_4' [Labels]='Labels_4' [barChartOptions]="barChartOptions"></app-pregunta-business>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #5.</b> ¿Qué tan útil fue para su empresa su participación en el evento de Networking de AmCham?</p>
+                <app-pregunta-business [Data]='resultados_business.pregunta_5' [Labels]='Labels_5' [barChartOptions]="barChartOptions"></app-pregunta-business>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #6.</b> ¿Cómo considera el precio por participar en el evento de Networking de AmCham?</p>
+                <app-pregunta-business [Data]='resultados_business.pregunta_6' [Labels]='Labels_6' [barChartOptions]="barChartOptions"></app-pregunta-business>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #7.</b> ¿Qué tan valioso fue para su empresa el perfil de participantes en el evento de Networking de AmCham?</p>
+                <app-pregunta-business [Data]='resultados_business.pregunta_7' [Labels]='Labels_7' [barChartOptions]="barChartOptions"></app-pregunta-business>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #8.</b> En una escala del 0 al 10, donde 0 es “Definitivamente No” y 10 “Definitivamente Si”
+                ¿Qué tan probable es que usted recomiende a otras empresas participar en el evento de Networking de AmCham?</p>
+                <app-pregunta-business [Data]='resultados_business.pregunta_8' [Labels]='Labels_8' [barChartOptions]="barChartOptions"></app-pregunta-business>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #10.</b> ¿Considera participar el próximo año en este mismo evento?</p>
+                <app-pregunta-business [Data]='resultados_business.pregunta_10' [Labels]='Labels_10' [barChartOptions]="barChartOptions"></app-pregunta-business>
+              </section>
+
+              <div class="resultado-title d-flex justify-content-center col-12">
+                <p class="p-title">Contenido de Preguntas</p>
+              </div>
+
+              <section class="chart-component full-width">
+                <p class="question"><b>Pregunta #4.</b> ¿Los organizadores le brindaron toda la información necesaria para su participación en el
+                evento de Networking de AmCham?</p>
+                <ul>
+                  <div *ngFor="let e of encuestas_business" style="font-size: 13px">
+                    <li *ngIf="e.pregunta_4[0] === '0'">
+                      <b>{{e.pregunta_4[0].replace(0, "No")}} ¿Por qué?</b> {{e.pregunta_4.substring(2)}}
+                    </li>
+                  </div>
+                </ul>
+              </section>
+
+              <section class="chart-component full-width">
+                <p class="question"><b>Pregunta #9.</b> ¿Cómo percibió la dinámica del acercamiento de su empresa con las demás empresas participantes?</p>
+                <ul>
+                  <li *ngFor="let e of encuestas_business">{{e.pregunta_9}}</li>
+                </ul>
+              </section>
+
+              <section class="chart-component full-width">
+                <p class="question"><b>Pregunta #10.</b> ¿Considera participar el próximo año en este mismo evento?</p>
+                <ul>
+                  <li *ngFor="let e of encuestas_business">
+                    <div *ngIf="e.pregunta_10[0] === '1'">
+                      <b>{{e.pregunta_10[0].replace(1, "Si")}} ¿Por qué?</b> {{e.pregunta_10.substring(2)}}
+                    </div>
+                    <div *ngIf="e.pregunta_10[0] === '0'">
+                      <b>{{e.pregunta_10[0].replace(0, "No")}} ¿Por qué?</b> {{e.pregunta_10.substring(2)}}
+                    </div>
+                  </li>
+                </ul>
+              </section>
+
+              <section class="chart-component full-width">
+                <p class="question"><b>Pregunta #11.</b> ¿Qué sugerencias tiene para este tipo de eventos realizados por AMCHAM?</p>
+                <ul>
+                  <li *ngFor="let e of encuestas_business">{{e.pregunta_11}}</li>
+                </ul>
+              </section>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div *ngSwitchCase="'II Feria de Tecnologia'">
+    <!-- Encabezado -->
+      <div class="row" *ngIf="resultados">
+        <div class="col-lg-10 offset-lg-1 col-md-12 offset-md-0">
+          <div class="card">
+
+            <div class="row">
+              <div class="col-lg-8 offset-lg-0 col-md-10 col-12">
+                <button class="btn btn-excel" (click)="exportarExcel()"><i class="fa fa-file-excel-o"></i> Descargar {{encuestas.length}} resultados</button>
+              </div>
+            </div>
+
+            <div class="resultado-title d-flex justify-content-center">
+              <p class="p-title">Contenido de Gráficas</p>
+            </div>
+
+            <div class="container-chart">
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #1.</b> ¿Cómo evalúa el contenido de las conferencias?</p>
+                <app-pregunta [Data]='resultados.pregunta_1' [Labels]='Labels' [barChartOptions]="barChartOptions"></app-pregunta>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #2.</b> ¿Que le pareció la conferencia de "DRIVING DIGITAL TRANSFORMATION"?</p>
+                <app-pregunta [Data]='resultados.pregunta_2' [Labels]='Labels' [barChartOptions]="barChartOptions"></app-pregunta>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #3.</b> ¿Cómo califica la conferencia de “EL INTERNET DE LAS COSAS SE VUELVE ACCESIBLE AL PAIS”?</p>
+                <app-pregunta [Data]='resultados.pregunta_3' [Labels]='Labels' [barChartOptions]="barChartOptions"></app-pregunta>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #4.</b> ¿Cómo describiría la conferencia de “HIPERCONVERGENCIA. MODERNIZANDO EL PRESENTE, SIMPLIFICANDO EL FUTURO”?.</p>
+                <app-pregunta [Data]='resultados.pregunta_4' [Labels]='Labels' [barChartOptions]="barChartOptions"></app-pregunta>
+              </section>
+
+              <section class="chart-component">
+                <p class="question"><b>Pregunta #5.</b> ¿Cómo califica la organización del evento?</p>
+                <app-pregunta [Data]='resultados.pregunta_5' [Labels]='Labels' [barChartOptions]="barChartOptions"></app-pregunta>
+              </section>
+
+              <div class="resultado-title d-flex justify-content-center col-12">
+                <p class="p-title">Contenido de Preguntas</p>
+              </div>
+
+              <section class="chart-component full-width">
+                <p class="question"><b>Pregunta #6.</b> Mencione otros temas que sea de su interés conocer.</p>
+                <ul>
+                  <li *ngFor="let e of encuestas">{{e.pregunta_6}}</li>
+                </ul>
+              </section>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  </div>
+</ng-container>
+
+<div class="row row-redes">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+      <div class="img-wrapper">
+        <img src="assets/footer.png" class="footer" alt="">
+        <img src="assets/footer 2.png" class="footer-2" alt="">
+      </div>
+  </div>
+</div>
+

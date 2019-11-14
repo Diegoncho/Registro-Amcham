@@ -1,0 +1,46 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="row">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+    <img src="assets/header 1.png?v=1.0" class="header" alt="">
+
+    <div class="section-group">
+      <div class="section-head">
+        <mat-icon>settings</mat-icon>
+        <div class="title"> Configuration Toggle</div>
+      </div>
+
+      <form [formGroup]="configGroup">
+        <div class="slide-toggles">
+
+          <div class="form-group">
+            <label for="ip">IP:</label>
+            <input type="text" class="form-control" formControlName="ip">
+
+            <div class="div-error" *ngIf="form_ip.invalid && (form_ip.dirty || form_ip.touched || show_error_message)">
+                *example:192.168.0.1
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="mac">MAC:</label>
+            <input type="text" class="form-control" formControlName="mac">
+
+            <div class="div-error" *ngIf="form_mac.invalid && (form_mac.dirty || form_mac.touched || show_error_message)">
+                *example:AB:D3:C9:CC:32:D5
+            </div>
+          </div>
+
+          <mat-slide-toggle color="primary" formControlName="wifi">Enable Wifi</mat-slide-toggle>
+
+          <button mat-stroked-button type="button" (click)="crear()">Guardar</button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="text-center">
+      <p *ngIf="show_error_message && configGroup.invalid" class="p-message message-error">{{form_message}}</p>
+      <p *ngIf="show_form_message" class="p-message">{{form_message}}</p>
+    </div>
+  </div>
+</div>

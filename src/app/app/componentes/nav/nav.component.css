@@ -1,0 +1,47 @@
+nav{
+    background-color: #1c2349 !important;
+    height: 47px;
+}
+
+/* Logo */
+img.img-logo{
+    width: 100px;
+    height: 30px;
+    margin-right: 50px;
+}
+
+/* Enlaces en el dropdown */
+nav a.nav-link, nav a.active, nav a{
+    color: #787878;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Enlaces en el navbar. */
+.nav-item{
+    margin: 0px 15px;
+}
+
+.nav-item a{
+    color: white;
+}
+
+/* Pantallas grandes */
+@media only screen and (min-width: 992px) {
+    #navbarDropdown{
+        margin-left: 40px;
+    }
+}
+
+/* Pantallas pequeñas */
+@media only screen and (max-width: 992px) {
+    img.img-logo{
+        margin-right: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* nav{
+        display: none;
+    } */
+}

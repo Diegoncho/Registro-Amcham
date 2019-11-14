@@ -1,0 +1,36 @@
+<div class="form-group">
+  <select class="form-control"(change)='dashboard($event)'>
+    <option value="Bar">Gráfico de Barra</option>
+    <option value="Doughnut">Gráfico de Dona</option>
+    <option value="Pie">Gráfico de Pastel</option>
+  </select>
+</div>
+
+<ng-container [ngSwitch]="grafico">
+  <div *ngSwitchCase="'Doughnut'">
+    <canvas baseChart
+            [data]="Data"
+            [labels]="Labels"
+            [chartType]="doughnutChartType"
+    ></canvas>
+  </div>
+
+  <div *ngSwitchCase="'Pie'">
+    <canvas baseChart
+            [data]="Data"
+            [labels]="Labels"
+            [chartType]="pieChartType"
+    ></canvas>
+  </div>
+
+  <div *ngSwitchCase="'Bar'">
+    <canvas baseChart
+            [data]="Data"
+            [labels]="Labels"
+            [chartType]="barChartType"
+            [legend]="barChartLegend"
+            [options]="barChartOptions"
+            [colors]="barChartColors"
+    ></canvas>
+  </div>
+</ng-container>

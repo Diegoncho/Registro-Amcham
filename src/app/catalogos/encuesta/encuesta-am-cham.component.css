@@ -1,0 +1,174 @@
+.card-edicion-1{
+  display: block;
+  z-index: 2;
+  margin-right: -20px;
+  margin-left: 10px;
+  width: 50%;
+  padding: 30px 40px;
+  -webkit-box-shadow: 7px 0px 7px 0px rgba(0,0,0,0.12);
+  -moz-box-shadow: 7px 0px 7px 0px rgba(0,0,0,0.12);
+  box-shadow: 7px 0px 7px 0px rgba(0,0,0,0.12);
+  transition: all 0.3s ease-out;
+}
+
+.form-group {
+  font-size: 13px !important;
+}
+
+.card-edicion-1:hover {
+  position: relative;
+  z-index: 3;
+  -webkit-box-shadow: 7px 0px 7px 0px rgba(0,0,0,0.12);
+  -moz-box-shadow: 7px 0px 7px 0px rgba(0,0,0,0.12);
+  box-shadow: 7px 0px 7px 0px rgba(0,0,0,0.12);
+  transform: scale(1.03);
+}
+
+.card-edicion-2{
+  width: 50%;
+  padding: 30px 40px;
+  transition: all 0.3s ease-out;
+}
+
+.card-edicion-2:hover {
+  position: relative;
+  z-index: 3;
+  -webkit-box-shadow: -7px 0px 7px 0px rgba(0,0,0,0.12);
+  -moz-box-shadow: -7px 0px 7px 0px rgba(0,0,0,0.12);
+  box-shadow: -7px 0px 7px 0px rgba(0,0,0,0.12);
+  transform: scale(1.03);
+}
+
+.titulo{
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  color: #1c2349;
+  margin-bottom: 20px;
+}
+input .slider.slider-horizontal .slider-tick-label-container .slider-tick-label{
+  background-color: red !important;
+}
+
+.form-group{
+  margin-bottom: 2rem !important;
+}
+
+.div-error{
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+.ng-invalid:not(form).ng-touched, .ng-invalid:not(form).ng-dirty{
+  border: 2px solid #a94442;
+}
+
+label.radio{
+  display: inline;
+  margin-right: 30px;
+  color: #1c2349;
+}
+
+label:not(.radio){
+  font-weight: bold;
+  color: #1c2349;
+}
+
+button.submit{
+  background-color: #1c2349;
+  color: white;
+  font-size: 15px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 10px 75px;
+  margin: 40px 0px;
+  cursor: pointer;
+}
+
+.p-message{
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  margin: 0px;
+}
+
+.header {
+  width: 100%;
+  margin-top: -77px;
+}
+
+.encuesta-head {
+  width: 100%;
+  display: flex;
+  justify-content: center
+}
+
+.encabezado-encuesta {
+  width: 160px;
+  margin-right: 10px;
+}
+
+.img-wrapper{
+  text-align: center;
+}
+
+.footer{
+  width: 100%;
+}
+
+.footer-2{
+  width: 25%;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .footer-2{
+      width: 50%;
+  }
+
+  .header{
+      margin-top: 0px;
+  }
+}
+
+@media (max-width: 920px) {
+  .card-edicion-1 {
+    width: 90%;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+
+  .form-encuesta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-edicion-2 {
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-group {
+    font-size: 12px !important;
+  }
+
+  .titulo {
+    font-size: 17px;
+  }
+}
+
+ @media (max-width: 768px){
+  .slider-tick-label{
+    font-size: 11px !important;
+  }
+}
+
+.slider.slider-horizontal {
+  width: 95% !important;
+  height: 20px !important;
+  margin-bottom: 28px !important;
+}

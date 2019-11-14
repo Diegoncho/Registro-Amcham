@@ -1,0 +1,26 @@
+<ng-container *ngIf="mostrar_avion">
+  <div class="wrapper gif"></div>
+</ng-container>
+
+<div [hidden]="mostrar_avion">
+
+  <button type="button" (click)="next()">Siguiente</button>
+
+  <div [hidden]="!mostrar_eliminado" class="wrapper">
+    <div [@containerTrigger]="containerState" class="div-container">
+      <div [@contentTrigger]="contentState" class="content">
+          <img src="assets/paracaidas.png" class="img-content" alt="">
+          <p>{{nombre_eliminado}}</p>
+      </div>
+    </div>
+
+    <div class="mensaje eliminacion">{{mensaje_eliminacion}}</div>
+    <div [@textTrigger]="mensaje_eliminado_state" class="mensaje eliminado">
+      {{mensaje_eliminado}}
+      <div class="logos">
+        <img class="copa" src="assets/copa_airlines.png" alt="">
+        <img class="escamilla" src="assets/escamilla.png" alt="">
+      </div>
+    </div>
+  </div>
+</div>

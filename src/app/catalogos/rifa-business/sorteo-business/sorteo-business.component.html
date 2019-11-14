@@ -1,0 +1,26 @@
+<div class="wrapper" *ngIf="participantes">
+  <div class="temporadizador" [ngStyle]="{'display': tempo}">
+    <p>{{seconds}}</p>
+  </div>
+  <div class="sorteo-container">
+    <div class="parte1">
+      <div [hidden]="!display" class="sorteo-content">
+        <span *ngFor="let participante of participantes; let i = index" [@placesTrigger]="estados[i]">{{participante}}</span>
+      </div>
+    </div>
+
+    <div class="parte2">
+      <div class="button-seleccionar" *ngIf="participantes.length > 0">
+        <button (click)="callParent()" class="btn btn-success success-border">
+          <i class="fa fa-trophy"style="margin:0 3px"></i> INICIAR SORTEO
+        </button>
+      </div>
+
+      <div class="button-reiniciar" *ngIf="participantes.length === 0">
+        <button (click)="callParent_2()" class="btn btn-primary primary-border">
+          <i class="fa fa-undo" style="margin:0 3px"></i> REINICIAR
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

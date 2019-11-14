@@ -1,0 +1,49 @@
+/* Modal */
+.modal-footer{
+    position: sticky;
+    bottom: 0px;
+    background-color: rgb(238, 238, 238);
+}
+
+/* Texto */
+.text-container{
+    width: 90%;
+    margin: 0% 5%;
+    text-align: center;
+}
+
+.modal-dialog{
+    max-height: 70%;
+    overflow-y: scroll;
+}
+
+/* Botones */
+.btn-container{
+    width: 50%;
+    padding: 0px;
+}
+
+.btn-container.solitario{
+    margin: 0px 25%;
+}
+
+.btn-container .btn{
+    width: 100%;
+}
+
+.btn-danger{
+    background-color: #FF3B3B;
+}
+
+.btn-light{
+    border-color: #203453;
+    color: #203453;
+}
+
+.btn-light:hover{
+    background-color: white;
+}
+
+.btn-success{
+   background-color:#00B960;
+}

@@ -1,0 +1,29 @@
+.header{
+    width: 100%;
+    margin-top: -75px;
+    margin-bottom: 90px;
+}
+
+.img-wrapper{
+    text-align: center;
+}
+
+.footer{
+    width: 100%;
+}
+
+.footer-2{
+    width: 25%;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .footer-2{
+        width: 50%;
+    }
+
+    .header{
+        margin-top: 0px;
+    }
+}
+

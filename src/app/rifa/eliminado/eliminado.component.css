@@ -1,0 +1,60 @@
+:host{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.wrapper{
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    background-color: #c2fef0;
+}
+
+.logos img.escamilla{
+    width: 20%;
+}
+
+.logos img.copa{
+    width: 35%;
+}
+
+.gif{
+    background-image: url("../../../assets/avion.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 20;
+}
+
+.div-container{
+    width: 20%;
+    margin-left: 30%;
+    display: block;
+    position: relative;
+}
+
+.content{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.content p{
+    font-size: 1.4rem;
+}
+
+.img-content{
+    width: 200px;
+}
+
+.wrapper .mensaje{
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.eliminacion{
+    padding-top: 150px;
+    font-weight: bold;
+}
+

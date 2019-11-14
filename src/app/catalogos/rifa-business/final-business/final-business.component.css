@@ -1,0 +1,19 @@
+.wrapper{
+  width: 100vw;
+  height: 700px;
+  background-color: white;
+  background-image: url("../../../../assets/agredecimientos-static.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.gif{
+  background-image: url("../../../../assets/agradecimientos.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 20;
+  overflow: hidden;
+}

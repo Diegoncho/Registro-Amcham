@@ -1,0 +1,20 @@
+<ng-container *ngIf="mostrar_gif">
+  <div class="wrapper gif"></div>
+</ng-container>
+
+<div [hidden]="mostrar_gif" class="wrapper">
+  <div class="parte1">
+    <div class="button-continuar">
+      <button (click)="callParent()" class="btn btn-info info-border">
+        VOLVER A RIFAR <i class="fa fa-forward" style="margin:0 5px"></i>
+      </button>
+
+      <button (click)="callParent_2()" class="btn btn-danger danger-border">
+        TERMINAR PRESENTACIÓN <i class="fa fa-step-forward" style="margin:0 5px"></i>
+      </button>
+    </div>
+    <div class="text">
+      <p [@textTrigger]="textState">{{mensaje}}</p>
+    </div>
+  </div>
+</div>

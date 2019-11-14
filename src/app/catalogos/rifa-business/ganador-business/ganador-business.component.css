@@ -1,0 +1,65 @@
+.parte1{
+    width: 50%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.wrapper{
+    width: 100vw;
+    height: 700px;
+    background-color: white;
+    background-image: url("../../../../assets/ganadores-static.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+}
+
+.gif{
+    background-image: url("../../../../assets/ganadores.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 20;
+    overflow: hidden;
+}
+
+.button-continuar{
+    position: relative;
+    bottom: 26px;
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-weight: bold;
+}
+
+.button-continuar .info-border {
+    margin: 10px 0px;
+    font-weight: bold;
+    border: 4px solid #0a8ea2 !important;
+}
+
+.button-continuar .danger-border {
+  margin: 10px 0px;
+  font-weight: bold;
+  border: 4px solid #af2734 !important;
+}
+
+.text{
+    position: relative;
+    width: 400px;
+    text-align: center;
+    top: 35px;
+}
+
+.text p{
+    font-size: 2rem;
+    font-weight: bold;
+}

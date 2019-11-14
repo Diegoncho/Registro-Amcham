@@ -1,0 +1,72 @@
+<app-progress-bar *ngIf="!empresas"></app-progress-bar>
+
+<div class="row">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+    <img src="assets/business-logo.png?v=2.0" class="header" alt="">
+
+    <form [formGroup]="solicitudForm">
+      <div class="card card-edicion" *ngIf="empresas">
+        <br>
+          <!-- Empresa -->
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <!-- <select class="form-control" formControlName="empresa">
+              <option *ngFor="let empresa of empresas" value="{{empresa.nombre}}">{{empresa.nombre}}</option>
+            </select> -->
+
+            <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Seleccione una Empresa" matInput [formControl]="myForm" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let empresa of filteredEmpresas | async" [value]="empresa.nombre">
+                  {{ empresa.nombre }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <div class="div-error" *ngIf="myForm.invalid && (myForm.dirty || myForm.touched || show_error_message)">
+              Seleccione su empresa
+            </div>
+          </div>
+
+          <!-- Nombre -->
+          <div class="form-group">
+            <label for="nombre">Nombre del representante</label>
+            <input type="text" class="form-control" formControlName="nombre" />
+            <div class="div-error" *ngIf="f_nombre.invalid && (f_nombre.dirty || f_nombre.touched || show_error_message)">
+              Ingrese el nombre del representante
+            </div>
+          </div>
+
+          <!-- Correo -->
+          <div class="form-group">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" class="form-control" formControlName="correo" />
+            <div class="div-error" *ngIf="f_correo.invalid && (f_correo.dirty || f_correo.touched || show_error_message)">
+              Ingrese el correo electrónico (en un formato válido)
+            </div>
+          </div>
+
+          <!-- Teléfono móvil -->
+          <div class="form-group">
+            <label for="tel">Teléfono celular</label>
+            <input type="text" class="form-control" formControlName="telefono_movil" />
+            <div class="div-error" *ngIf="f_telefono_movil.invalid && (f_telefono_movil.dirty || f_telefono_movil.touched || show_error_message)">
+              Ingrese su teléfono personal, en formato 7777-7777
+            </div>
+          </div>
+      </div>
+
+      <!-- Botones del formulario -->
+      <div class="button-container text-center">
+        <p *ngIf="show_error_message && solicitudForm.invalid" class="p-message message-error">{{form_message}}</p>
+        <p *ngIf="show_form_message" class="p-message">{{form_message}}</p>
+        <button class="submit" type="button" (click)="crear()" >Registrarse</button>
+      </div>
+    </form>
+
+    <div class="img-wrapper">
+      <img src="assets/footer.png" class="footer" alt="">
+      <img src="assets/footer 2.png" class="footer-2" alt="">
+    </div>
+  </div>
+</div>

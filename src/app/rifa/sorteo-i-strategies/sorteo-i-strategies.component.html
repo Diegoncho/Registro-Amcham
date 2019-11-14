@@ -1,0 +1,7 @@
+<div class="wrapper">
+  <div class="sorteo-container">
+    <div [hidden]="!display" class="sorteo-content">
+      <span *ngFor="let participante of participantes; let i = index" [@placesTrigger]="estados[i]">{{participante}}</span>
+    </div>
+  </div>
+</div>

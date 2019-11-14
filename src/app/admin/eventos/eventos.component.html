@@ -1,0 +1,160 @@
+<!-- Mostrar barra de progreso mientras se obtienen los datos. -->
+<app-progress-bar *ngIf="!eventos"></app-progress-bar>
+
+<div class="row">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+    <img src="assets/head.png?v=2.0" class="header" alt="">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 text-center title">
+    Eventos
+  </div>
+</div>
+
+<!-- Encabezado -->
+<div class="row" *ngIf="eventos">
+  <div class="input-group mt-3 mb-3 col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+    <label for="search" class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" style="font-size: 13px"></i>Buscar</span>
+    </label>
+    <input type="text" id="search" [(ngModel)]="busqueda" class="form-control" placeholder="Buscar por nombre..."
+    style="font-size: 13px">
+  </div>
+</div>
+
+<!-- Listado de registros. -->
+<div class="row" *ngIf="eventos">
+  <div class="col-12">
+    <div class="card">
+
+      <div class="d-flex justify-content-between">
+        <div class="form-group d-flex align-items-center col-7">
+          <div class="number-select">
+            <select class="form-control" (change)='pageLenght($event)'>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option selected="true">10</option>
+            </select>
+          </div>
+          <p class="m-0 ml-3">Registros por página.</p>
+        </div>
+
+        <div class="col-lg-3 offset-lg-2 col-md-2 offset-md-1">
+          <div class="btns" *ngIf="eventos">
+            <div class="d-flex justify-content-end"style="width: 50%">
+                <button class="btn btn-excel" (click)="exportarExcel()" ><i class="fa fa-file-excel-o"></i></button>
+                <button class="btn btn-excel" data-toggle="modal" data-target="#modal_agregar" (click)="selectPlus()"><i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Tabla -->
+        <table class="table table-striped table-collapse">
+          <thead>
+            <tr>
+              <th class="d-sm-table-cell" style="width: 20%">#</th>
+              <th style="width: 80%">Nombre</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <p class="text-center" *ngIf="eventos.length === 0">No hay registros que mostrar</p>
+
+            <!-- Mostrar solicitud -->
+            <tr *ngFor="let evento of (registros_visibles | filtroEventos:busqueda:orden:asc
+            | paginate: { itemsPerPage: PageItems, currentPage: p }); let i = index">
+              <td class="d-sm-table-cell">{{i + 1}}</td>
+              <td style="width: 300px">{{evento.nombre}}</td>
+              <td>
+                <i class="fa fa-info-circle" data-toggle="modal" data-target="#modal_info" (click)="selectEvento(evento)"></i>
+                <i class="fa fa-edit" data-toggle="modal" data-target="#modal_editar" (click)="selectEvento(evento)"></i>
+                <i class="fa fa-trash" data-toggle="modal" data-target="#modal_delete" (click)="selectEvento(evento)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between align-items-center">
+          <p style="font-size: 13px">Total registros: {{eventos.length}} / Mostrados 1 de {{PageItems}}</p>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    <!-- Fin de la tabla. -->
+
+    </div>
+  </div>
+</div>
+
+<div class="row row-redes">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+      <div class="img-wrapper">
+        <img src="assets/footer.png" class="footer" alt="">
+        <img src="assets/footer 2.png" class="footer-2" alt="">
+      </div>
+  </div>
+</div>
+
+<app-modal [id]="'modal_info'" [es_informativo]="true">
+  <div class="text-container" *ngIf="evento">
+    <p><span class="bold">Nombre: </span> {{evento.nombre}}</p>
+    <p><span class="bold">Fecha: </span> {{evento.fecha | date:'dd/MM HH:mm'}}</p>
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_agregar'" [es_exito]="true" [mensaje_boton]="'Crear'" (btnClick)="crear()">
+  <div class="text-container">
+    <form [formGroup]="solicitudForm">
+      <!-- Nombre  -->
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre" />
+        <div class="div-error" *ngIf="f_nombre.invalid && (f_nombre.dirty || f_nombre.touched || show_error_message)">
+          Ingrese el nombre
+        </div>
+      </div>
+
+      <!-- Botones del formulario -->
+      <div class="button-container text-center">
+        <p *ngIf="show_error_message && solicitudForm.invalid" class="p-message message-error">{{form_message}}</p>
+        <p *ngIf="show_form_message" class="p-message">{{form_message}}</p>
+      </div>
+    </form>
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_editar'" [es_exito]="true" [mensaje_boton]="'Actualizar'" (btnClick)="actualizar()">
+  <div class="text-container" *ngIf="evento">
+    <form [formGroup]="solicitudForm">
+      <!-- Nombre  -->
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre" />
+        <div class="div-error" *ngIf="f_nombre.invalid && (f_nombre.dirty || f_nombre.touched || show_error_message)">
+          Ingrese el nombre
+        </div>
+      </div>
+
+      <!-- Botones del formulario -->
+      <div class="button-container text-center">
+        <p *ngIf="show_error_message && solicitudForm.invalid" class="p-message message-error">{{form_message}}</p>
+        <p *ngIf="show_form_message" class="p-message">{{form_message}}</p>
+      </div>
+    </form>
+  </div>
+</app-modal>
+
+<app-modal [id]="'modal_delete'" [es_advertencia]="true" [mensaje_boton]="'Eliminar'" (btnClick)="eliminar()">
+  <div class="text-container text-center" *ngIf="evento">
+    ¿Está seguro de eliminar el registro<br> <span class="bold">{{evento.nombre}}</span>?
+    <br>
+    {{form_message}}
+  </div>
+</app-modal>

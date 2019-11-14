@@ -1,0 +1,10 @@
+<ng-container *ngIf="mostrar_avion">
+  <div class="wrapper gif"></div>
+</ng-container>
+
+<div [hidden]="mostrar_avion" class="wrapper">
+  <button type="button" (click)="next()">Siguiente</button>
+  <div class="text">
+    <p [@textTrigger]="textState">{{mensaje}}</p>
+  </div>
+</div>

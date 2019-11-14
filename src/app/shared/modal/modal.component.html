@@ -1,0 +1,30 @@
+<!-- ----- -->
+<!-- Modal -->
+<div class="modal fade" [id]="id" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <!-- Body: Pregunta -->
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+      <!-- / Body: Pregunta -->
+
+      <!-- Footer: Botones -->
+      <div class="modal-footer">
+
+        <!-- Mostrar solo un botón si es informativo -->
+        <div class="btn-container" *ngIf="!es_informativo">
+          <button type="button" class="btn" [class.btn-danger]="es_advertencia" [class.btn-success]="es_exito" (click)="btnClicked()">{{mensaje_boton}}</button>
+        </div>
+        <div class="btn-container" [class.solitario]="es_informativo">
+          <button type="button" class="btn btn-light" data-dismiss="modal">{{es_informativo ? 'Aceptar' : 'Cancelar'}}</button>
+        </div>
+      </div>
+      <!-- / Footer: Botones -->
+
+    </div>
+  </div>
+</div>
+<!-- Fin de modal -->
+<!-- ------------ -->

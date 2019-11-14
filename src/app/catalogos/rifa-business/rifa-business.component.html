@@ -1,0 +1,29 @@
+<app-progress-bar *ngIf="!participantes"></app-progress-bar>
+<div class="row">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+    <img src="assets/header 1.png?v=1.0" class="header" alt="">
+  </div>
+</div>
+
+<ng-container *ngIf="mostrar_sorteo">
+  <app-sorteo-business [participantes]="participantes" [seconds]="seconds" [tempo]="tempo"
+  (someEvent)="seleccionar()" (someEventBoot)="reiniciar()"></app-sorteo-business>
+</ng-container>
+
+<ng-container *ngIf="mostrar_ganador">
+  <app-ganador-business [participante_seleccionado]="participante_seleccionado" [mensaje_inicial]="'¡Ganador!'"
+  (someEvent_2)="continuar()"  (someEventEnd)="finalizar()" [mensaje_ganador]="participante_seleccionado"></app-ganador-business>
+</ng-container>
+
+<ng-container *ngIf="mostrar_final">
+  <app-final-business></app-final-business>
+</ng-container>
+
+<div class="row row-redes">
+  <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+      <div class="img-wrapper">
+        <img src="assets/footer.png" class="footer" alt="">
+        <img src="assets/footer 2.png" class="footer-2" alt="">
+      </div>
+  </div>
+</div>

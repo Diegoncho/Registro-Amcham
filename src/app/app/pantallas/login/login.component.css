@@ -1,0 +1,106 @@
+/* Contenedor de la página */
+.container-fluid {
+  padding-left: 0px;
+  overflow-y: hidden;
+  background-color: #1c2349 !important;
+  min-height: 100vh;
+}
+
+/* Imagen de login */
+.div-img{
+  padding: 0px;
+}
+
+.div-img img{
+  width: 100%;
+}
+
+.header{
+  width: 100%;
+}
+
+/* Formulario del login */
+.form-control {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  border-radius: 0px;
+  -webkit-transition-property: border-bottom;
+  -webkit-transition-duration: 100ms;
+  -webkit-transition-timing-function: linear;
+  transition-property: border-bottom;
+  transition-duration: 100ms;
+  transition-timing-function: linear;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-bottom: 3px solid #ffffff;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.form-control::-moz-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.form-control::-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.form-control::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* Contenedor de las imagenes */
+.img-login {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.img-powered {
+  text-align: center;
+  padding-top: 50px;
+}
+
+.btn {
+  background: #A93A39;
+  border: 1px solid #A93A39;
+  text-transform: uppercase;
+  color: #ffffff;
+  border-radius: 0;
+  letter-spacing: 2px;
+  font-size: 17px;
+}
+
+/* Footer */
+.footer {
+  position: relative;
+  text-align: right;
+  bottom: 0;
+  width: 100%;
+  min-height: 40px;
+  background-color: #313C4C;
+  z-index: 1;
+}
+
+.text-muted {
+  color: #e9ecef!important;
+  font-size: 0.7rem;
+}
+
+.text-error{
+  color: #A93A39;
+}
